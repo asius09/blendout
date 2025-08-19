@@ -1,26 +1,89 @@
+
+/* Import Bungee font from Google Fonts for logo text */
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+
+/* Import Tailwind CSS */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+  Traitor Game color system: simple, only primary, background, foreground, and text.
+  Uses OKLCH for color accuracy and accessibility.
+  Supports both light and dark mode, and respects user color scheme preference.
+*/
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  /* Primary brand color (orange, vivid) */
+  --primary: oklch(72% 0.19 45);
+
+  /* Light theme */
+  --background: oklch(98% 0.01 260); /* very light, almost white */
+  --foreground: oklch(96% 0.02 260); /* card/surface, slightly darker */
+  --text-on-background: oklch(22% 0.01 260); /* dark text for light bg */
+  --text-on-foreground: oklch(30% 0.02 260); /* for cards/foreground */
+  --input-bg: oklch(96% 0.02 260); /* input on background */
+  --input-on-foreground: oklch(98% 0.01 260); /* input on card/foreground */
+
+  /* Logo font variable */
+  --font-logo: 'Bungee', cursive;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Dark theme */
+    --background: oklch(22% 0.01 260); /* deep dark blue */
+    --foreground: oklch(30% 0.02 260); /* card/surface, slightly lighter */
+    --text-on-background: oklch(98% 0.01 260); /* light text for dark bg */
+    --text-on-foreground: oklch(96% 0.01 260); /* for cards/foreground */
+    --input-bg: oklch(30% 0.02 260); /* input on background */
+    --input-on-foreground: oklch(36% 0.02 260); /* input on card/foreground */
   }
+}
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-text-bg: var(--text-on-background);
+  --color-text-fg: var(--text-on-foreground);
+  --color-input-bg: var(--input-bg);
+  --color-input-fg: var(--input-on-foreground);
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-on-background);
+  font-family: var(--font-body, Arial, Helvetica, sans-serif);
+}
+
+/* Card/Surface */
+.card,
+.surface,
+.foreground {
+  background: var(--foreground);
+  color: var(--text-on-foreground);
+}
+
+/* Input styles */
+input,
+.input {
+  background: var(--input-bg);
+  color: var(--text-on-background);
+}
+
+/* Input on card/foreground */
+.foreground input,
+.card input,
+.input-on-foreground {
+  background: var(--input-on-foreground);
+  color: var(--text-on-foreground);
+}
+
+/* Logo/Title font */
+.logo,
+.title {
+  font-family: var(--font-logo, 'Bungee', cursive);
+}
+
+* {
+  @apply selection:text-text-bg selection:bg-primary/50;
 }
