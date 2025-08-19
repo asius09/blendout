@@ -1,7 +1,5 @@
-
 /* Import Bungee font from Google Fonts for logo text */
-@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Bungee&display=swap");
 /* Import Tailwind CSS */
 @import "tailwindcss";
 
@@ -10,7 +8,6 @@
   Uses OKLCH for color accuracy and accessibility.
   Supports both light and dark mode, and respects user color scheme preference.
 */
-
 :root {
   /* Primary brand color (orange, vivid) */
   --primary: oklch(72% 0.19 45);
@@ -24,7 +21,7 @@
   --input-on-foreground: oklch(98% 0.01 260); /* input on card/foreground */
 
   /* Logo font variable */
-  --font-logo: 'Bungee', cursive;
+  --font-logo: "Bungee", cursive;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -81,7 +78,7 @@ input,
 /* Logo/Title font */
 .logo,
 .title {
-  font-family: var(--font-logo, 'Bungee', cursive);
+  font-family: var(--font-logo, "Bungee", cursive);
 }
 
 * {
